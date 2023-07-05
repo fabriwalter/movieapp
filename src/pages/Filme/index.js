@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 import './filme-info.css'
 
 import api from '../../services/api';
+
 
 //URL https://api.themoviedb.org/3/movie/455476?api_key=e0e3c742e23c07da03302daefe5e4eca&language=pt-BR
 
@@ -50,13 +52,13 @@ function Filme() {
         const hasFilme = filmesSalvos.some((filmesSalvos) => filmesSalvos.id === filme.id);
 
         if(hasFilme) {
-            alert('esse filme já está na lista');
+            toast.warn('Esse filme já está na sua lista!');
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem('@primeflix', JSON.stringify(filmesSalvos));
-        alert('filme salvo com sucesso!');
+        toast.success('Filme salvo com sucesso!');
 
     }
     
